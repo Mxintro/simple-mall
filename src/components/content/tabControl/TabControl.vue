@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+// import { mapState } from 'vuex'
 
 export default {
 	name: "TabControl",
@@ -18,18 +18,32 @@ export default {
 		titles: {
 			type: Array,
 			default: [],
-		},
     },
-    computed: mapState({
-        currentIndex: state => state.tabControlIndex//映射简化
-    }),      
-    methods: {
-        itemClick(index) {
-            this.$store.commit('TabControlIndex', index)
-            
-            this.$emit('itemClick', index)
-        }
+    conectIndex: {
+      type: Number,
+      default: 0
+    }       
+  },
+  data(){
+    return {
+      currentIndex: 0
     }
+  },
+    // computed: mapState({
+    //     currentIndex: state => state.tabControlIndex//映射简化,vuex方法解决公用currentIndex问题
+    // }),      
+  methods: {
+      itemClick(index) {
+          // this.$store.commit('TabControlIndex', index)
+          this.currentIndex = index
+          this.$emit('itemClick', index)
+      }
+  },
+  watch:{
+    conectIndex(){
+      this.currentIndex = this.conectIndex
+    }
+  }
 };
 </script>
 

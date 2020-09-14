@@ -7,7 +7,7 @@
             ref="categoryScroll">
       <div>
         <category-content-tab :categoryContent="categoryContent"></category-content-tab>
-        <tab-control :titles="detailTitle" @itemClick="typeClick"></tab-control>
+        <tab-control :titles="detailTitle" @itemClick= "tabClick" :key = "selectItemIndex"></tab-control>
         <category-detail-tab :categoryDetail="categoryDetail"></category-detail-tab>
       </div>    
     </scroll>
@@ -26,7 +26,8 @@ import NavBar from 'common/navbar/NavBar'
 import TabControl from 'content/tabControl/TabControl'
 
 import {getCategory, getSubcategory, getCategoryDetail} from 'network/category'
-import {TabControlMixin,} from '@/common/mixin'
+import {TabControlMixin} from '@/common/mixin'
+import {NEW, POP, SELL, BACKTOP_DISTANCE} from "@/common/const";
 
 export default {
   name: 'Category',
