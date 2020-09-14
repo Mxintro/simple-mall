@@ -2,15 +2,24 @@
   <div id="category">
     <nav-bar class="nav-bar"><div slot="center">商品分类</div></nav-bar>
     <category-menu :categoryList="categoryList" @selectItem="menuClick"></category-menu>
-    <scroll class="scroll-content"
+    <div id="content">
+      <scroll class="scroll-content"
+            @scroll="categoryScroll"
             :data="[categoryData]"
-            ref="categoryScroll">
+            :probe-type="3"
+            ref="scroll"
+            >
       <div>
         <category-content-tab :categoryContent="categoryContent"></category-content-tab>
         <tab-control :titles="detailTitle" @itemClick= "tabClick" :key = "selectItemIndex"></tab-control>
         <category-detail-tab :categoryDetail="categoryDetail"></category-detail-tab>
       </div>    
     </scroll>
+    </div>
+    
+    <back-top @backTop="backTop" class="back-top" v-show="showBackTop">
+      <img src="~assets/img/common/top.png" alt="">
+    </back-top>
     
   </div>
 </template>
@@ -24,10 +33,14 @@ import CategoryDetailTab from './childcomps/CategoryDetailTab'
 import Scroll from 'common/scroll/Scroll'
 import NavBar from 'common/navbar/NavBar'
 import TabControl from 'content/tabControl/TabControl'
+import BackTop from 'content/backTop/BackTop'
+
 
 import {getCategory, getSubcategory, getCategoryDetail} from 'network/category'
-import {TabControlMixin} from '@/common/mixin'
+import {TabControlMixin,backTopMixin} from '@/common/mixin'
 import {NEW, POP, SELL, BACKTOP_DISTANCE} from "@/common/const";
+
+
 
 export default {
   name: 'Category',
@@ -39,8 +52,9 @@ export default {
     CategoryContentTab,
     TabControl,
     CategoryDetailTab,
+    BackTop
   },
-  mixins: [TabControlMixin],
+  mixins: [TabControlMixin, backTopMixin],
   data(){
     return {
       categoryList: [],
@@ -54,9 +68,9 @@ export default {
     this._getCategory()
   },
 
-  updated(){
-    this.$refs.categoryScroll.refresh()
-  },
+  // updated(){
+  //   this.$refs.categoryScroll.refresh()
+  // },
 
   computed: {//返回数组项，无法跟踪数组内更新
     categoryContent(){
@@ -109,26 +123,41 @@ export default {
     menuClick(index){
       this._getCategoryContent(index)
     },
+    categoryScroll(positon){
+      this.showBackTop = positon.y < -BACKTOP_DISTANCE
+    }
   }
 
 }
 </script>
 
 <style scoped>
+  #category {
+    height: 100vh;
+    /* position: relative; */
+  }
   .nav-bar {
     background:  rgb(255, 129, 152);
     color: #ffffff;
     font-size: 16px;
   }
-  #category {
-    height: 100vh;
-    /* position: relative; */
-  }
-  .scroll-content {
+
+  #content {
     position: absolute;
     left: 100px;
     right: 0px;
     top: 44px;
     bottom: 49px;
+    display: flex;
   }
+ .scroll-content{
+   flex: 1;
+   height: 100%;
+ }
+
+  .back-top {
+  position: fixed;
+  right: 10px;
+  bottom: 60px;
+}
 </style>

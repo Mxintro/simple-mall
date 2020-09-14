@@ -50,6 +50,8 @@ import GoodList from './childcomps/GoodList'
 
 import {getHomeMultidata, getHomeData, RECOMMEND, BANNER} from "network/home";
 import {NEW, POP, SELL, BACKTOP_DISTANCE} from "@/common/const";
+import {backTopMixin} from "@/common/mixin"
+
 
 
 export default {
@@ -80,10 +82,11 @@ export default {
       currentType: POP,
       isTabFixed: false,
       tabOffsetTop: 0,
-      showBackTop: false,
       TabControlIndex: 0
     }
   },
+
+  mixins: [backTopMixin],
 
   created() {
     this.getMultidata()
@@ -140,9 +143,6 @@ export default {
         this.$refs.scroll.finishPullUp()
 
       }) 
-    },
-    backTop(){
-      this.$refs.scroll.scrollTo(0, 0, 300)
     }
   }
   

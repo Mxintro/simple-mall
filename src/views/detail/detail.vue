@@ -43,6 +43,7 @@ import BackTop from 'content/backTop/BackTop'
 
 import {getDetail, getRecommend, Goods, Shop, GoodsParam} from "network/detail";
 import {BACKTOP_DISTANCE} from "@/common/const";
+import {backTopMixin} from "@/common/mixin"
 
 
 export default {
@@ -57,8 +58,7 @@ export default {
       paramInfo: {},
       commentInfo:{},
       themTops:[],
-      recommendList: [],
-      showBackTop: false,
+      recommendList: []
     }
   },
 
@@ -75,6 +75,7 @@ export default {
     detailRecommendInfo,
     BackTop,
   },
+  mixins: [backTopMixin],
   created(){
     this._getDetailData()
     this._getRecommend()
@@ -131,9 +132,7 @@ export default {
       this._getOffsetTops()
       this.$refs.scroll.scrollTo(0, -this.themTops[index], 100)
     },
-    backTop(){
-      this.$refs.scroll.scrollTo(0, 0, 300)
-    },
+    
     contentScroll(position) {
 		    // 1.监听backTop的显示
         this.showBackTop = position.y < -BACKTOP_DISTANCE
