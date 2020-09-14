@@ -1,4 +1,4 @@
-# hello-world
+# simple-mall
 
 ## Project setup
 ```
