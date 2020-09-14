@@ -13,9 +13,9 @@ const mutations = {
       state.cartList.push(info)
     }
   },
-  TabControlIndex(state, n){
-    state.tabControlIndex = n
-  }
+  // TabControlIndex(state, n){
+  //   state.tabControlIndex = n
+  // }
 }
 
 export default mutations

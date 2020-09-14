@@ -3,8 +3,12 @@
     <nav-bar class="nav-bar">
       <div slot="center">购物街</div>
     </nav-bar>
-    <tab-control v-show="isTabFixed" @itemClick = "tabClick" class="fixed"
-        :titles="['流行', '新款', '精选']">
+    <tab-control 
+                :conectIndex = TabControlIndex
+                v-show="isTabFixed" 
+                @itemClick = "tabClick" 
+                class="fixed"
+                :titles="['流行', '新款', '精选']">
     </tab-control>
     <keep-alive>
     <scroll class="content"
@@ -18,7 +22,7 @@
         <home-swiper :banners="banners" ref="swiper"></home-swiper>
         <feature-view :features="recommends"></feature-view>
         <recommend-view/>
-        <tab-control @itemClick = "tabClick" ref="tabControl"
+        <tab-control @itemClick = "tabClick" ref="tabControl" :conectIndex = TabControlIndex
                     :titles="['流行', '新款', '精选']"></tab-control>
         <good-list :goods-list = "goodslistShow"></good-list>
       </div>
@@ -77,8 +81,10 @@ export default {
       isTabFixed: false,
       tabOffsetTop: 0,
       showBackTop: false,
+      TabControlIndex: 0
     }
   },
+
   created() {
     this.getMultidata()
     for (let key in this.goodslist) {
@@ -110,6 +116,7 @@ export default {
     }, 
     tabClick(index){
       this.currentType = Object.keys(this.goodslist)[index]
+      this.TabControlIndex = index
     },
     loadMore(){
       this.getHomePorducts(this.currentType)
@@ -137,7 +144,7 @@ export default {
     backTop(){
       this.$refs.scroll.scrollTo(0, 0, 300)
     }
-  },
+  }
   
 } 
 </script>

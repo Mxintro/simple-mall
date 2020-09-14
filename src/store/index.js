@@ -8,7 +8,7 @@ import getters from './getters'
 Vue.use(Vuex)
 
 const state = {
-  tabControlIndex: 0,
+  // tabControlIndex: 0,
   cartList: []
 }
 
