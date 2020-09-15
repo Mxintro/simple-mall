@@ -29,7 +29,7 @@ export default {
   display: grid;
   grid-row-gap: 20px;
   grid-template-columns: repeat(auto-fill, 82px);
-  margin-left: 20px;
+  padding-left: 20px;
   margin-bottom: 30px;
   text-align: center;
   font-size: 12px;

@@ -1,8 +1,12 @@
 <template>
   <div id="category">
     <nav-bar class="nav-bar"><div slot="center">商品分类</div></nav-bar>
-    <category-menu :categoryList="categoryList" @selectItem="menuClick"></category-menu>
     <div id="content">
+      <scroll :data="categoryList">
+        <div>
+          <category-menu :categoryList="categoryList" @selectItem="menuClick"></category-menu>
+        </div>
+      </scroll>
       <scroll class="scroll-content"
             @scroll="categoryScroll"
             :data="[categoryData]"
@@ -68,9 +72,14 @@ export default {
     this._getCategory()
   },
 
-  // updated(){
+  updated(){
   //   this.$refs.categoryScroll.refresh()
-  // },
+    let screen = [window.screen.height,window.screen.width,
+    document.documentElement.scrollWidth || document.body.scrollWidth,
+    document.documentElement.scrollHeight || document.body.scrollHeight]   
+    console.log(screen);
+
+  },
 
   computed: {//返回数组项，无法跟踪数组内更新
     categoryContent(){
@@ -144,10 +153,11 @@ export default {
 
   #content {
     position: absolute;
-    left: 100px;
+    left: 0px;
     right: 0px;
     top: 44px;
     bottom: 49px;
+
     display: flex;
   }
  .scroll-content{
