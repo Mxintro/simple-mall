@@ -148,6 +148,7 @@ export default {
   .nav-bar {
     background:  rgb(255, 129, 152);
     color: #ffffff;
+    font-weight: 700;
     font-size: 16px;
   }
 

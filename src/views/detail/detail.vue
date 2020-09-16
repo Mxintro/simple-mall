@@ -44,6 +44,7 @@ import BackTop from 'content/backTop/BackTop'
 import {getDetail, getRecommend, Goods, Shop, GoodsParam} from "network/detail";
 import {BACKTOP_DISTANCE} from "@/common/const";
 import {backTopMixin} from "@/common/mixin"
+import { mapMutations } from 'vuex'
 
 
 export default {
@@ -90,6 +91,10 @@ export default {
     
   },
   methods: {
+    ...mapMutations([
+      'addCart'
+    ]),
+
     _getDetailData() {
       const iid = this.$route.query.iid
 
