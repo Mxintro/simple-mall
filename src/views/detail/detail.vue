@@ -21,7 +21,7 @@
     <back-top @backTop="backTop" class="back-top" v-show="showBackTop">
       <img src="~assets/img/common/top.png" alt="">
     </back-top>
-    <detail-bottom-bar></detail-bottom-bar>      
+    <detail-bottom-bar @addCart="addCartClick"></detail-bottom-bar>      
   </div>
 
   
@@ -59,7 +59,7 @@ export default {
       paramInfo: {},
       commentInfo:{},
       themTops:[],
-      recommendList: []
+      recommendList: [],
     }
   },
 
@@ -90,6 +90,7 @@ export default {
     // this.$nextTick(()=> console.log(document.querySelector('.content').children[0].offsetHeight))
     
   },
+  
   methods: {
     ...mapMutations([
       'addCart'
@@ -156,6 +157,11 @@ export default {
         this.$refs.navBar.currrentIndex = 3
       }
     },
+    addCartClick(){
+      this.goods.img = this.topImage[0]
+      let {desc, newPrice, img, iid}=this.goods
+      this.addCart({desc, newPrice, img, iid})
+    }
   }
 }
 </script>

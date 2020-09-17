@@ -3,8 +3,13 @@
   <div class="good-select">
     <check-button></check-button>
   </div>
-  <div class="good-img"></div>
-  <div class="good-info"></div>
+  <div class="good-img">
+    <img :src="cartItem.img" alt=""></div>
+  <div class="good-info">
+    <div class="cart-desc"></div>
+    <div class="new-price"></div>
+    <div class="cart-count"></div>
+  </div>
 </div>
 </template>
 
@@ -26,4 +31,22 @@ export default {
 </script>
 
 <style scoped>
+.cart-list-item {
+  width: 100%;
+  height: 150px;
+
+  display: flex;
+}
+.good-select {
+  height: 100%;
+  width: 40px;
+}
+.good-img {
+  /* height: 120px; */
+  width: 120px;
+}
+.good-img img {
+  height: 100%;
+  width: 100%;
+}
 </style>

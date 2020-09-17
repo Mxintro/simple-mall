@@ -12,7 +12,7 @@
         <div class="icon select"></div>
         <span class="text">收藏</span>
     </div>
-    <div class="bar-item shopping-cart">加入购物车</div> 
+    <div class="bar-item shopping-cart" @click="addCart">加入购物车</div> 
     <div class="bar-item purchase">购买</div>     
 </div>
   
@@ -21,6 +21,12 @@
 <script>
 export default {
     name: "DetailBottomBar",
+
+    methods: {
+      addCart(){
+        this.$emit("addCart")
+      }
+    }
 }
 </script>
 
