@@ -18,11 +18,7 @@ const getters = {
     return state.cartList.find(item => item.iid===id).checked
   },
   checkedAll(state){ 
-    let checked = true 
-    state.cartList.forEach(el => {
-      checked = checked && el.checked
-    })
-    return checked
+    return state.cartList.find(item => item.checked === false) === undefined
   }
 }
 
