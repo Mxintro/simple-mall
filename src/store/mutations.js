@@ -13,6 +13,22 @@ const mutations = {
       state.cartList.push(info)
     }
   },
+  checkedClick(state, payload){
+    const currentItem = state.cartList.find(item => item.iid === payload)
+    currentItem.checked = !currentItem.checked
+  },
+  selectAll(state){
+    if (this.getters.checkedAll){
+      state.cartList.forEach(element => {
+        element.checked = false
+      });
+    }else {
+      state.cartList.forEach(element => {
+        element.checked = true
+      });
+    }
+   
+  }
   // TabControlIndex(state, n){
   //   state.tabControlIndex = n
   // }

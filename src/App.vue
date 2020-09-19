@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <keep-alive exclude="Detail">
      <router-view/>    
     </keep-alive>

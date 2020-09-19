@@ -1,7 +1,9 @@
 <template>
 <div class="shop-cart">
-  <nav-bar class="nav-bar"><div slot="center">购物车</div></nav-bar>
-  <cart-list :cartList="cartCount"></cart-list>
+  <nav-bar class="nav-bar"><div slot="center">购物车({{cartCount}})</div></nav-bar>
+  <cart-list :cartList="cartList"></cart-list>
+  <bottom-bar :cartList="cartList"></bottom-bar>
+
 </div>
 
   
@@ -11,6 +13,8 @@
 import NavBar from 'common/navbar/NavBar'
 import CartList from './childcomps/CartList'
 
+import BottomBar from './childcomps/BottomBar'
+
 import { mapGetters } from 'vuex'
 
 export default {
@@ -18,6 +22,7 @@ export default {
   components: {
     NavBar,
     CartList,
+    BottomBar
   },
   computed: {
     ...mapGetters([

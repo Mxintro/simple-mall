@@ -9,7 +9,7 @@ Vue.use(Vuex)
 
 const state = {
   // tabControlIndex: 0,
-  cartList: []
+  cartList: [],
 }
 
 const store = new Vuex.Store({

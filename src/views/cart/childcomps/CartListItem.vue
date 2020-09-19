@@ -1,14 +1,17 @@
 <template>
-<div class="cart-list-item" v-if="Object.key(cartItem).length !== 0">
+<div class="cart-list-item" v-if="Object.keys(cartItem).length !== 0">
   <div class="good-select">
-    <check-button></check-button>
+    <check-button :cartItem="cartItem"></check-button>
   </div>
   <div class="good-img">
     <img :src="cartItem.img" alt=""></div>
   <div class="good-info">
-    <div class="cart-desc"></div>
-    <div class="new-price"></div>
-    <div class="cart-count"></div>
+    <div class="cart-title">{{cartItem.title}}</div>
+    <div class="cart-desc">商品描述：{{cartItem.desc}}</div>
+    <div class="price-count">
+      <div class="now-price">￥{{cartItem.nowPrice}}</div>
+      <div class="cart-count">x{{cartItem.count}}</div>
+    </div>
   </div>
 </div>
 </template>
@@ -26,27 +29,67 @@ export default {
   },
   components: {
     CheckButton
-  }
+  },
+  
 }
 </script>
 
 <style scoped>
 .cart-list-item {
   width: 100%;
-  height: 150px;
+  height: 120px;
+  padding: 10px 5px;
 
   display: flex;
+ border-bottom: 1px solid #ccc;
 }
 .good-select {
+  flex-shrink: 0;
   height: 100%;
-  width: 40px;
+  width: 18px;
+  display: flex;
+  align-items: center;
 }
 .good-img {
   /* height: 120px; */
-  width: 120px;
+  flex-shrink: 0;
+  width: 80px;
+  height: 100px;
+  margin: 0 5px
 }
 .good-img img {
   height: 100%;
   width: 100%;
+  border-radius: 5px;
+}
+.good-info {
+  padding:0 10px;
+  position: relative;
+  overflow: hidden;
+  font-size: 17px;
+}
+.cart-title, .cart-desc {
+  color: #333;
+  padding-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.cart-desc {
+  font-size: 14px;
+  color: rgb(102, 102, 102);
+}
+
+.price-count{
+  display: flex;
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  right: 10px;
+  justify-content: space-between;
+}
+.now-price {
+  color:rgb(255, 69, 0);
 }
 </style>

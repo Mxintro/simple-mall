@@ -21,7 +21,7 @@
     <back-top @backTop="backTop" class="back-top" v-show="showBackTop">
       <img src="~assets/img/common/top.png" alt="">
     </back-top>
-    <detail-bottom-bar @addCart="addCartClick"></detail-bottom-bar>      
+    <detail-bottom-bar @addClick="addCartClick"></detail-bottom-bar>      
   </div>
 
   
@@ -159,8 +159,8 @@ export default {
     },
     addCartClick(){
       this.goods.img = this.topImage[0]
-      let {desc, newPrice, img, iid}=this.goods
-      this.addCart({desc, newPrice, img, iid})
+      let {desc, nowPrice, img, iid, title}=this.goods
+      this.addCart({desc, nowPrice, img, iid, title})
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="icon-selector" :class="{'selector-active': checked}" @click="selectItem">
+  <div class="icon-selector" :class="{'selector-active': checked || checkedAll}" @click="checkedClick">
     <img src="~/assets/img/cart/tick.svg" alt="">
   </div>
 </div>
@@ -9,6 +9,32 @@
 <script>
 export default {
   name: "CheckButton",
+  props: {
+    cartItem: {
+      type: Object,
+      default(){
+        return {}
+      }
+    }
+  },
+  computed: {
+    checkedAll(){
+      return this.$store.getters.checkedAll
+    },
+    checked(){
+      return this.cartItem.checked ? this.cartItem.checked : false
+      // return this.cartItem.iid ? this.$store.getters.getChecked(this.cartItem.iid) :false
+    }
+  },
+  methods: {
+    checkedClick(){
+      if (Object.keys(this.cartItem).length !== 0) {
+        this.$store.commit('checkedClick', this.cartItem.iid)
+      }else {
+        this.$store.commit('selectAll')
+      }
+    }
+  }
 
 }
 </script>
