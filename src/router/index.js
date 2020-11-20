@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from 'views/home/Home.vue'
 
-const Cart = () => import('views/cart/cart.vue');
-const Category = () => import('views/category/category.vue');
-const Profile = () => import('views/profile/profile.vue');
-const Detail = () => import('views/detail/detail.vue')
+const Home = () => import('views/home/Home.vue');
+const Cart = () => import('views/cart/Cart.vue');
+const Category = () => import('views/category/Category.vue');
+const Profile = () => import('views/profile/Profile.vue');
+const Detail = () => import('views/detail/Detail.vue')
 
 
 
@@ -24,26 +24,26 @@ Vue.use(VueRouter)
   },
   {
     path:'/cart',
-    component: Cart,
+    component: Cart
   },
   {
     path:'/category',
-    component: Category,
+    component: Category
   },
   {
     path:'/profile',
-    component: Profile,
+    component: Profile
   },
   {
     path:'/detail',
-    component: Detail,
+    component: Detail
   },
   
 ]
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  base: '/mall',
   routes
 })
 

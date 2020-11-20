@@ -21,7 +21,8 @@
     <back-top @backTop="backTop" class="back-top" v-show="showBackTop">
       <img src="~assets/img/common/top.png" alt="">
     </back-top>
-    <detail-bottom-bar @addClick="addCartClick"></detail-bottom-bar>      
+    <detail-show-sku :isVisible.sync="skuVisible" :skuInfos="skuInfo"></detail-show-sku> 
+    <detail-bottom-bar @addClick="addCartClick"></detail-bottom-bar>
   </div>
 
   
@@ -37,13 +38,15 @@ import DetailGoodsInfo from './detailcomps/DetailGoodsInfo'
 import DetailParamInfo from './detailcomps/DetailParamInfo'
 import DetailCommentInfo from './detailcomps/DetailCommentInfo'
 import detailRecommendInfo from './detailcomps/detailRecommendInfo'
+import DetailShowSku from './detailcomps/DetailShowSku'
+
 
 import Scroll from 'common/scroll/Scroll'
 import BackTop from 'content/backTop/BackTop'
 
-import {getDetail, getRecommend, Goods, Shop, GoodsParam} from "network/detail";
-import {BACKTOP_DISTANCE} from "@/common/const";
-import {backTopMixin} from "@/common/mixin"
+import { getDetail, getRecommend, Goods, Shop, GoodsParam, Sku } from "network/detail";
+import { BACKTOP_DISTANCE } from "@/common/const";
+import { backTopMixin } from "@/common/mixin"
 import { mapMutations } from 'vuex'
 
 
@@ -60,6 +63,8 @@ export default {
       commentInfo:{},
       themTops:[],
       recommendList: [],
+      skuInfo: {},
+      skuVisible: false
     }
   },
 
@@ -75,6 +80,7 @@ export default {
     DetailCommentInfo,
     detailRecommendInfo,
     BackTop,
+    DetailShowSku
   },
   mixins: [backTopMixin],
   created(){
@@ -111,6 +117,7 @@ export default {
         if (data.rate.list){
           this.commentInfo = data.rate;
         }
+        this.skuInfo = new Sku(data.skuInfo)
       })
       
     },
@@ -158,9 +165,11 @@ export default {
       }
     },
     addCartClick(){
-      this.goods.img = this.topImage[0]
-      let {desc, nowPrice, img, iid, title}=this.goods
-      this.addCart({desc, nowPrice, img, iid, title})
+      this.skuVisible = !this.skuVisible
+      console.log(this.skuVisible);
+      // this.goods.img = this.topImage[0]
+      // let {desc, nowPrice, img, iid, title}=this.goods
+      // this.addCart({desc, nowPrice, img, iid, title})
     }
   }
 }

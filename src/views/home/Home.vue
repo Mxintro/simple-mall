@@ -64,8 +64,7 @@ export default {
     RecommendView,
     TabControl,
     GoodList,
-    BackTop,
-    
+    BackTop 
   },
 
   data() {
@@ -129,7 +128,6 @@ export default {
         this.res = res.data
         this.recommends = res.data[RECOMMEND].list
         this.banners = res.data[BANNER].list
-        console.log(res.data[BANNER].list)
 
         this.$nextTick(() => {
           this.tabOffsetTop = this.$refs.tabControl.$el.offsetTop

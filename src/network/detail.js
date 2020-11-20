@@ -49,3 +49,11 @@ export class Shop {
   }
 }
 
+export class Sku {
+  constructor(skuInfo) {
+    this.price = skuInfo.defaultPrice
+    this.color = skuInfo.props[0].list
+    this.sizes = skuInfo.props[1].list
+    this.skus = skuInfo.skus
+  }
+}
