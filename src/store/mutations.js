@@ -2,19 +2,18 @@ const mutations = {
   addCart(state, info) {
     console.log(info);
     // 1.查看是否添加过
-    const oldInfo = state.cartList.find(item => item.iid === info.iid)
+    const oldInfo = state.cartList.find(item => item.stockId === info.stockId)
 
     // 2.+1或者新添加
     if (oldInfo) {
-      oldInfo.count += 1
+      oldInfo.count = info.count
     } else {
-      info.count = 1
       info.checked = true
       state.cartList.push(info)
     }
   },
   checkedClick(state, payload){
-    const currentItem = state.cartList.find(item => item.iid === payload)
+    const currentItem = state.cartList.find(item => item.stockId === payload)
     currentItem.checked = !currentItem.checked
   },
   selectAll(state){

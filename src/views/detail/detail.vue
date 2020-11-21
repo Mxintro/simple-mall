@@ -21,8 +21,15 @@
     <back-top @backTop="backTop" class="back-top" v-show="showBackTop">
       <img src="~assets/img/common/top.png" alt="">
     </back-top>
-    <detail-show-sku :isVisible.sync="skuVisible" :skuInfos="skuInfo"></detail-show-sku> 
-    <detail-bottom-bar @addClick="addCartClick"></detail-bottom-bar>
+    <detail-show-sku
+      :isVisible.sync="skuVisible"
+      :goodTitle="goods.title"
+      :goodIid="detailIid"
+      :entryType.sync="isBuying"
+      :skuInfos="skuInfo"></detail-show-sku> 
+    <detail-bottom-bar
+      @add-click="skuVisible=true"
+      @buy-click="buyingClick"></detail-bottom-bar>
   </div>
 
   
@@ -47,14 +54,13 @@ import BackTop from 'content/backTop/BackTop'
 import { getDetail, getRecommend, Goods, Shop, GoodsParam, Sku } from "network/detail";
 import { BACKTOP_DISTANCE } from "@/common/const";
 import { backTopMixin } from "@/common/mixin"
-import { mapMutations } from 'vuex'
-
 
 export default {
 
   name: "Detail",
   data: () => {
     return {
+      detailIid: '',
       topImage: [],
       goods: {},
       shop: {},
@@ -64,7 +70,8 @@ export default {
       themTops:[],
       recommendList: [],
       skuInfo: {},
-      skuVisible: false
+      skuVisible: false,
+      isBuying: false
     }
   },
 
@@ -88,24 +95,15 @@ export default {
     this._getRecommend()
   },
   updated(){
-    // window.onload = function {
-    //   this.$refs.scroll.refresh();
-    // }
     this._getOffsetTops()
-    setTimeout(() => this.$refs.scroll.refresh(), 20)
-    // this.$nextTick(()=> console.log(document.querySelector('.content').children[0].offsetHeight))
-    
+    setTimeout(() => this.$refs.scroll.refresh(), 20)    
   },
   
   methods: {
-    ...mapMutations([
-      'addCart'
-    ]),
-
     _getDetailData() {
-      const iid = this.$route.query.iid
+      this.detailIid = this.$route.query.iid
 
-      getDetail(iid).then((res, error) => {
+      getDetail(this.detailIid).then((res, error) => {
         if (error) return
         const data = res.result
         
@@ -164,12 +162,9 @@ export default {
         this.$refs.navBar.currrentIndex = 3
       }
     },
-    addCartClick(){
-      this.skuVisible = !this.skuVisible
-      console.log(this.skuVisible);
-      // this.goods.img = this.topImage[0]
-      // let {desc, nowPrice, img, iid, title}=this.goods
-      // this.addCart({desc, nowPrice, img, iid, title})
+    buyingClick() {
+      this.skuVisible = true
+      this.isBuying = true
     }
   }
 }

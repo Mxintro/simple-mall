@@ -12,21 +12,14 @@
         <div class="icon select"></div>
         <span class="text">收藏</span>
     </div>
-    <div class="bar-item shopping-cart" @click="addClick">加入购物车</div> 
-    <div class="bar-item purchase">购买</div>     
+    <div class="bar-item shopping-cart" @click="$emit('add-click')">加入购物车</div> 
+    <div class="bar-item purchase" @click="$emit('buy-click')">购买</div>     
 </div>
   
 </template>
-
 <script>
 export default {
-    name: "DetailBottomBar",
-
-    methods: {
-      addClick(){
-        this.$emit("addClick")
-      }
-    }
+    name: "DetailBottomBar"
 }
 </script>
 

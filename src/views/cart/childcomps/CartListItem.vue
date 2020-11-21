@@ -6,10 +6,15 @@
   <div class="good-img">
     <img :src="cartItem.img" alt=""></div>
   <div class="good-info">
-    <div class="cart-title">{{cartItem.title}}</div>
-    <div class="cart-desc">商品描述：{{cartItem.desc}}</div>
+    <div class="cart-title"
+      @click="$router.push({path: '/detail', query: {iid: cartItem.goodIid}})">
+      {{cartItem.title}}</div>
+    <div class="cart-desc">商品描述:
+      <span>{{cartItem.style}}</span>
+      <span>{{cartItem.size}}</span>
+    </div>
     <div class="price-count">
-      <div class="now-price">￥{{cartItem.nowPrice}}</div>
+      <div class="now-price">￥{{cartItem.nowprice}}</div>
       <div class="cart-count">x{{cartItem.count}}</div>
     </div>
   </div>
@@ -80,7 +85,11 @@ export default {
   font-size: 14px;
   color: rgb(102, 102, 102);
 }
-
+.cart-desc span {
+  color: rgb(255, 129, 152);
+  font-size: 13px;
+  margin-left: 10px;
+}
 .price-count{
   display: flex;
   position: absolute;

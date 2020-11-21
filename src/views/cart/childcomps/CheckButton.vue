@@ -29,7 +29,7 @@ export default {
   methods: {
     checkedClick(){
       if (Object.keys(this.cartItem).length !== 0) {
-        this.$store.commit('checkedClick', this.cartItem.iid)
+        this.$store.commit('checkedClick', this.cartItem.stockId)
       }else {
         this.$store.commit('selectAll')
       }
