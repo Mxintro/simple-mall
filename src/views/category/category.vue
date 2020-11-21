@@ -29,13 +29,11 @@
 </template>
 
 <script>
+import NavBar from 'common/navbar/NavBar'
 import CategoryMenu from './childcomps/CategoryMenu'
 import CategoryContentTab from './childcomps/CategoryContentTab'
-
 import CategoryDetailTab from './childcomps/CategoryDetailTab'
-
 import Scroll from 'common/scroll/Scroll'
-import NavBar from 'common/navbar/NavBar'
 import TabControl from 'content/tabControl/TabControl'
 import BackTop from 'content/backTop/BackTop'
 

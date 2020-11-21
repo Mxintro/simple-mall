@@ -40,11 +40,11 @@
 import NavBar from 'common/navbar/NavBar'
 import Scroll from 'common/scroll/Scroll'
 import TabControl from 'content/tabControl/TabControl'
-import BackTop from 'content/backTop/BackTop'
 import homeSwiper from './childcomps/homeSwiper'
 import FeatureView from './childcomps/FeatureView'
 import RecommendView from './childcomps/RecommendView'
 import GoodList from './childcomps/GoodList'
+import BackTop from 'content/backTop/BackTop'
 
 
 

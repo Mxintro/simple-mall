@@ -7,8 +7,6 @@ const Category = () => import('views/category/Category.vue');
 const Profile = () => import('views/profile/Profile.vue');
 const Detail = () => import('views/detail/Detail.vue')
 
-
-
 Vue.use(VueRouter)
 
   const routes = [
@@ -46,5 +44,10 @@ const router = new VueRouter({
   base: '/mall',
   routes
 })
+
+const originalPush = VueRouter.prototype.push
+  VueRouter.prototype.push = function push(location) {
+   return originalPush.call(this, location).catch(err => err)
+}
 
 export default router

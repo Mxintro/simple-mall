@@ -30,13 +30,13 @@ module.exports = {
       //add添加新的打包入口
       // config.entry('app').clear().add('./src/main-prod.js')
 
-      //使用externals设置排除项
+      //使用externals设置排除项,包名：全局变量名
       config.set('externals',{
         'vue':'Vue',
         'vue-router':'VueRouter',
         'axios':'axios',
         'vuex': 'Vuex',
-        'vue-lazyload': 'VueLazyLoad'
+        'vue-lazyload': 'VueLazyload'
       })
 
       config.plugin('html').tap(args=>{
