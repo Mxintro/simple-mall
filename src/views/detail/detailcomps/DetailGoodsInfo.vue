@@ -7,8 +7,9 @@
     </div>
     <div class="info-key">{{detailInfo.detailImage[0].key}}</div>
     <div class="info-list">
+      <!-- 此处使用v-lazy会使首次高度计算不准确 -->
       <img v-for="(item, index) in detailInfo.detailImage[0].list" 
-      v-lazy="item" :key="index"  alt="">
+      :src="item" :key="index"  alt="">
   </div>  
 </div>
 
@@ -27,17 +28,7 @@ export default {
     return {
       imgLoad:0
       }
-  },
-  // methods: {
-  //   //解决图片加载时，scroll无法正确获取内容高度问题
-  //   imagesLoad(){
-  //     this.imgLoad++
-  //     if (this.imgLoad===this.detailInfo.detailImage[0].list.length){
-  //       this.$emit("imgLoading")
-  //       console.log(`*********************${this.imgLoad}`)
-  //     }
-  //   }
-  // }
+  }
 }
 </script>
 

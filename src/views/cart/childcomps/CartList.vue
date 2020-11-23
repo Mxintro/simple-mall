@@ -1,4 +1,4 @@
-<template>
+ <template>
 <div class="cart-list">
   <div v-for="(item,index) in cartList" :key="index">
     <cart-list-item :cartItem="item"></cart-list-item>

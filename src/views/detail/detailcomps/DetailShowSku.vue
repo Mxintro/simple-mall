@@ -10,7 +10,8 @@
         <div class="price">{{Number(currentSku.nowprice/100).toFixed(2)}}</div>
         <div>库存{{currentSku.stock}}件</div>
         <div>请选择：颜色  尺码</div>
-        </div>
+      </div>
+      <img class="cancelDailog" src="~assets/img/detail/cancel.png" @click="cleanDialog">
     </div>
     <div class="sku-middle">
       <div class="color-info">
@@ -116,15 +117,15 @@ export default {
       if (this.skuDom) {
         this.skuDom.style.transition = 'transform ' + '400ms'
         if (this.isVisible) {
-          this.skuDom.style.transform = 'translateY(-22rem)'
+          this.skuDom.style.transform = 'translateY(-24rem)'
         }
       }
     },
     cleanDialog() {
-      this.skuDom.style.transform = 'translateY(22rem)'
+      this.skuDom.style.transform = 'translateY(24rem)'
       setTimeout(() => {
         this.$emit('update:isVisible', false) //注意空格
-      },420)
+      },200)
     },
     numDecrease() {
       if (this.goodsCount > 0) {
@@ -174,7 +175,7 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 22rem;
+  height: 24rem;
   top: 100%;
   z-index: 1000;
   background-color: #fff;
@@ -188,7 +189,7 @@ export default {
   width: 8rem;
   height: 5.5rem;
 }
-.sku-top img {
+.sku-top .img-container img {
   position: absolute;
   bottom: 0.5rem;
   margin-left: 20px;
@@ -217,6 +218,13 @@ export default {
   font-size: 10px;
   float: left;
   margin-top: 0.5rem;
+}
+.sku-top .cancelDailog {
+  float: right;
+  margin-top: 1rem;
+  margin-right: 1.2rem;
+  width: 1.2rem;
+  color: #ff4b8a;
 }
 #sku-container .sku-middle {
   margin: 0 10px;

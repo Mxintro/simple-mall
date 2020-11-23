@@ -2,8 +2,11 @@
 <nav-bar class="detail-nav">
     <img slot="left" @click="backClick" src="~assets/img/common/back.svg" alt="">
     <div slot='center' class="title">
-        <span class="title-item" @click="itemClick(index)" :class="{active: currrentIndex===index}"
-        v-for="(item, index) in titleInfos" :key="index">{{item}}</span>
+        <span class="title-item" 
+          v-for="(item, index) in titleInfos" 
+          @click="itemClick(index)"
+          :class="{'active': currentIndex===index}"
+          :key="index">{{item}}</span>
     </div>
 </nav-bar>
   
@@ -18,17 +21,16 @@ export default {
     components: {
         NavBar,
     },
-    data(){
-      return {
-        currrentIndex: 0
-      }
-    },
     props: {
         titleInfos: {
-            type: Array,
-            default: () => {
-            return ['商品', '参数', '评论','推荐']
-            }
+          type: Array,
+          default: () => {
+          return ['商品', '参数', '评论','推荐']
+          }
+        },
+        currentIndex: {
+          type: Number,
+          default: 0
         }
         
     },
@@ -37,9 +39,7 @@ export default {
           this.$router.back()
         },
         itemClick(index){
-          this.currrentIndex = index
           this.$emit("itemClick", index)
-          console.log(`%%%%%%%%%%%%%%%${index}`)
         }
     }
 }
@@ -55,10 +55,9 @@ export default {
 }
 .title-item {
     flex: 1;
-
     font-size: 14px;
 }
-.title-item .active {
+.active {
   color: var(--color-high-text);
 }
 </style>

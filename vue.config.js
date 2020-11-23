@@ -36,7 +36,7 @@ module.exports = {
         'vue-router':'VueRouter',
         'axios':'axios',
         'vuex': 'Vuex',
-        'vue-lazyload': 'VueLazyload'
+        'vue-lazyload': 'VueLazyload'//识别问题
       })
 
       config.plugin('html').tap(args=>{

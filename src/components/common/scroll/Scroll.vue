@@ -50,19 +50,18 @@ export default {
             
             this.scroll.on("scroll", position => {
                 this.$emit("scroll", position)
+                // console.log(position);
             })
 
             this.scroll.on("pullingUp", () => {
                 this.$emit("pulling-up")
                 
             })
-
-            
+          
         },
         refresh(){
           this.scroll && this.scroll.refresh && this.scroll.refresh()
-          // console.log(document.querySelector('.content').children[0].offsetHeight)
-            
+          // console.log(document.querySelector('.content').children[0].offsetHeight)  
           console.log(`refresh -----------------${this.i++}`)          
         },
         //每次触发上拉事件后，在回调函数的最后，都应该调用 finishPullUp() 方法。
@@ -77,7 +76,7 @@ export default {
       }
     },
     watch: {
-        data(){
+        data(val){
             setTimeout(this.refresh, 20)
         }
     }

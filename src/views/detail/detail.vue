@@ -1,6 +1,6 @@
-<template>
+d<template>
   <div id="detail">
-    <detail-nav-bar @itemClick="scrollTo" ref="navBar"> </detail-nav-bar>
+    <detail-nav-bar @itemClick="scrollTo" :currentIndex="navBarIndex"> </detail-nav-bar>
     <scroll class="content"
             ref="scroll"
             @scroll="contentScroll"
@@ -8,10 +8,10 @@
             :probe-type="3"
             :pull-up-load="true">
       <div>
-        <detail-swiper :images="topImage"></detail-swiper>
+        <detail-swiper ref="top" :images="topImage"></detail-swiper>
         <detail-base-info :goods="goods"></detail-base-info>
         <detail-shop-info :shop="shop"></detail-shop-info>
-        <detail-goods-info :detail-info="detailInfo" @imgLoading="goodsLoad" ref="goodsInfo"></detail-goods-info>
+        <detail-goods-info :detail-info="detailInfo" ref="ginfo"></detail-goods-info>
         <detail-param-info :param="paramInfo" ref="paramInfo"></detail-param-info>
         <detail-comment-info :commentInfo="commentInfo" ref="comment"></detail-comment-info>
         <detail-recommend-info ref="recommend" :recommend-list="recommendList"></detail-recommend-info>
@@ -69,6 +69,7 @@ export default {
       commentInfo:{},
       themTops:[],
       recommendList: [],
+      navBarIndex: 0,
       skuInfo: {},
       skuVisible: false,
       isBuying: false
@@ -94,11 +95,6 @@ export default {
     this._getDetailData()
     this._getRecommend()
   },
-  updated(){
-    this._getOffsetTops()
-    setTimeout(() => this.$refs.scroll.refresh(), 20)    
-  },
-  
   methods: {
     _getDetailData() {
       this.detailIid = this.$route.query.iid
@@ -120,18 +116,16 @@ export default {
       
     },
     goodsLoad(){
+      console.log('********************************goodsload');
       this.$refs.scroll.refresh()
-      // this._getOffsetTops()
-      // console.log(this.themTops[1],this.themTops[3])
+
     },
     _getOffsetTops(){
       let temTops = this.themTops = []
-      temTops.push(this.$refs.goodsInfo.$el.offsetTop)
+      temTops.push(this.$refs.ginfo.$el.offsetTop)
       temTops.push(this.$refs.paramInfo.$el.offsetTop)
       temTops.push(this.$refs.comment.$el.offsetTop)
       temTops.push(this.$refs.recommend.$el.offsetTop)
-      console.log(this.themTops)
-
     },
     _getRecommend() {
       getRecommend().then((res, error) => {
@@ -140,26 +134,24 @@ export default {
       })
     },
     scrollTo(index){
+      this.navBarIndex = index
       this._getOffsetTops()
       this.$refs.scroll.scrollTo(0, -this.themTops[index], 100)
     },
     
     contentScroll(position) {
-		    // 1.监听backTop的显示
         this.showBackTop = position.y < -BACKTOP_DISTANCE
         this._listenScrollTheme(position)
-        // 2.监听滚动到哪一个主题
-        // this._listenScrollTheme(-position.y)
     },
     _listenScrollTheme(position){
       if (position.y > -this.themTops[1]) {
-        this.$refs.navBar.currrentIndex = 0
+        this.navBarIndex = 0
       }else if(position.y > -this.themTops[2]) {
-        this.$refs.navBar.currrentIndex = 1
+        this.navBarIndex = 1
       }else if (position.y > -this.themTops[3]) {
-        this.$refs.navBar.currrentIndex = 2
+        this.navBarIndex = 2
       }else {
-        this.$refs.navBar.currrentIndex = 3
+        this.navBarIndex = 3
       }
     },
     buyingClick() {
