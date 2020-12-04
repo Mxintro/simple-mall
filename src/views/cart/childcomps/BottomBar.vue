@@ -5,7 +5,7 @@
     <div>全选</div>
   </div>
   <div class="tatol-cost">合计：￥{{getTotalCost}}</div>
-  <div class="order-settle">去结算（{{cartCount}}）</div>
+  <div class="order-settle" @click="submitOrder">去结算（{{cartCount}}）</div>
 </div>
 </template>
  
@@ -29,6 +29,11 @@ export default {
       'cartCount',
       'getTotalCost'
     ])
+  },
+  methods: {
+    submitOrder() {
+      this.$emit('orderClick')
+    }
   }
 }
 </script>

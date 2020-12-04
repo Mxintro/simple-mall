@@ -172,8 +172,8 @@ export default {
 }
 #sku-container {
   position:fixed;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   width: 100%;
   height: 24rem;
   top: 100%;
@@ -182,6 +182,24 @@ export default {
 }
 #sku-container .sku-top {
   height: 5.5rem;
+}
+#sku-container .sku-middle {
+  margin: 0 10px;
+  height: 15rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  justify-content: space-between;
+}
+#sku-container .sku-bottom {
+  height: 3.5rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  line-height: 3.5rem;
+  text-align: center;
+  background-color: #ff4b8a;
+  color: #fff;
 }
 .sku-top .img-container {
   float: left;
@@ -195,7 +213,6 @@ export default {
   margin-left: 20px;
   margin-right: 20px;
   padding-top: -40px;
-  /* transform: translateY(-30%); */
   width: 5.5rem;
   height: auto;
 }
@@ -226,34 +243,22 @@ export default {
   width: 1.2rem;
   color: #ff4b8a;
 }
-#sku-container .sku-middle {
-  margin: 0 10px;
-  height: 12rem;
-  display: flex;
-  flex-direction: column;
-  font-size: 13px;
-  justify-content: space-around;
-}
 .sku-middle .color-info {
-  flex: 1;
+  flex: 1.5;
 }
 .sku-middle .sizes-info{
   flex: 1;
 }
 .sku-middle .count-num {
   flex: 1;
-  height: 2rem;
 }
 .sku-middle .color-list {
   display: flex;
-  /* justify-content: start; */
-  /* height: 5rem; */
   align-content: space-between;
   flex-wrap: wrap;
 }
 .sku-middle .sizes-list {
   display: flex;
-  /* justify-content: start; */
   flex-wrap: wrap;
 }
 .sku-middle .color-size-btn {
@@ -297,11 +302,11 @@ export default {
   height: auto;
 }
 #sku-container .sku-bottom {
-  height: 3rem;
+  height: 3.5rem;
   position: absolute;
   bottom: 0;
   width: 100%;
-  line-height: 3rem;
+  line-height: 3.5rem;
   text-align: center;
   background-color: #ff4b8a;
   color: #fff;

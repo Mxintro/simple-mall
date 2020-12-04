@@ -1,10 +1,10 @@
 <template>
-  <div class="comment" v-if="Object.keys(commentInfo).length !==0">
+  <div class="comment" >
     <div class="comment-top">
-      <span class="title">用户评价({{commentInfo.cRate}})</span>
+      <span class="title">用户评价({{commentInfo.cRate || 0}})</span>
       <span class="more">更多<i class="arrow-right"></i></span>
     </div>
-    <comment :comment="commentInfo.list[0]"></comment>
+    <comment :comment="commentInfo.list[0]" v-if="Object.keys(commentInfo).length !==0"></comment>
   </div>
 </template>
 

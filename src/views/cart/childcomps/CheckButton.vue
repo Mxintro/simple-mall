@@ -23,8 +23,8 @@ export default {
     },
     checked(){
       return this.cartItem.checked ? this.cartItem.checked : false
-      // return this.cartItem.iid ? this.$store.getters.getChecked(this.cartItem.iid) :false
-    }
+    },
+    
   },
   methods: {
     checkedClick(){

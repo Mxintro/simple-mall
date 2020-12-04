@@ -6,6 +6,8 @@ const Cart = () => import('views/cart/Cart.vue');
 const Category = () => import('views/category/Category.vue');
 const Profile = () => import('views/profile/Profile.vue');
 const Detail = () => import('views/detail/Detail.vue')
+const Login = () => import('views/user/Login.vue')
+const Register = () => import('views/user/Register.vue')
 
 Vue.use(VueRouter)
 
@@ -36,6 +38,14 @@ Vue.use(VueRouter)
     path:'/detail',
     component: Detail
   },
+  {
+    path: '/login',
+    component: Login
+  },
+  {
+    path: '/reg',
+    component: Register
+  }
   
 ]
 

@@ -14,11 +14,13 @@ const getters = {
     });
     return total
   },
-  // getChecked: state => id => {
-  //   return state.cartList.find(item => item.iid===id).checked
-  // },
   checkedAll(state){ 
     return state.cartList.find(item => item.checked === false) === undefined
+  },
+  getOrderCost: (state) => (index) => {
+    console.log(index);
+    const item = state.cartList[index]
+    return item.count*item.nowprice
   }
 }
 

@@ -26,11 +26,14 @@ const mutations = {
         element.checked = true
       });
     }
-   
+  },
+  deleteCart(state, index) {
+    state.cartList.splice(index,1)
+  },
+  cartCountHandler(state, payload){
+    l
+    state.cartList[payload.index].count += payload.num
   }
-  // TabControlIndex(state, n){
-  //   state.tabControlIndex = n
-  // }
 }
 
 export default mutations
