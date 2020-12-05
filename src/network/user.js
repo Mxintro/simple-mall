@@ -43,3 +43,11 @@ export function loginUser(params) {
     data: params
   })
 }
+
+export function register(params) {
+  return userHttp({
+    url: '/reg',
+    method: 'post',
+    data: params
+  })
+}

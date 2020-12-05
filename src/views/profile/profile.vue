@@ -42,9 +42,9 @@ export default {
   data() {
     return {
       orderList: [
-        {icon: '#order', iconColor: '#ff8198', info: '我的消息'},
-        {icon: '#point', iconColor: '#fc7b53', info: '积分商城'},
-        {icon: '#vip', iconColor: '#ffc636', info: '会员卡'},
+        {icon: '#order', iconColor: '#ff8198', info: '我的消息',link: ''},
+        {icon: '#point', iconColor: '#fc7b53', info: '我的订单',link: '/order'},
+        {icon: '#vip', iconColor: '#ffc636', info: '会员卡',link: ''},
       ],
       serviceList: [
         {icon: '#service', iconColor: '#ff8198', info: '我的购物车'},
@@ -59,9 +59,12 @@ export default {
   created() {
     this.getUserInfo()
   },
+  activated(){
+    this.getUserInfo()
+  },
   methods: {
     getUserInfo() {
-      this.userInfo.userName = window.sessionStorage.getItem('userName')
+      this.userInfo.userName = window.sessionStorage.getItem('userName') || '登录/注册'
       this.userInfo.uid = window.sessionStorage.getItem('uid')
     }
   }
@@ -113,5 +116,6 @@ export default {
   .order-list, .service-list {
     margin-top: 12px;
   }
+ 
 
 </style>

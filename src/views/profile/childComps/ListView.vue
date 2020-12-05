@@ -1,6 +1,6 @@
 <template>
     <div id="list">
-      <div v-for="(item, index) in listData" :key="index" class="item">
+      <div v-for="(item, index) in listData" :key="index" class="item" @click="goTo(item.link)">
         <span class="icon">
           <svg :fill="item.iconColor"><use :xlink:href="item.icon"></use></svg>
         </span>
@@ -17,6 +17,13 @@
 		    type: Array,
         default: function () {
           return []
+        }
+      }
+    },
+    methods: {
+      goTo(path) {
+        if(path) {
+          this.$router.push(path)
         }
       }
     }

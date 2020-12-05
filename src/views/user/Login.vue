@@ -11,6 +11,7 @@
         <input type="password" :placeholder="pwdHolder" v-model="userForm.password" ref="pwd">
         <input class="submit" :class="{active: isSubmit}" type="submit" value="提交" @click.prevent="onSubmit"/>
       </form>
+      <div class="reg-bt" @click="$router.replace('/reg')">注册新用户</div>
     </div>
   </div>
   <toast-com :toastShow.sync="toastVisible">
@@ -55,7 +56,6 @@ export default {
     formSubmit: throttle(function(){
       this.isSubmit = false
       if(!this.phoneValidate(this.userForm.phone)){
-        const phone = this.$refs.phone
         this.userForm.phone = ''
         this.phoneHolder = '请输入正确手机号码'
         return
@@ -149,4 +149,8 @@ export default {
 .icon-chenggong, .icon-shibai {
   font-size: 16px;
 }
+ .form_info .reg-bt{
+    float: right; 
+    color: var(--color-tint);
+  }
 </style>

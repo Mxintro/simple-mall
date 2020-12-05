@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
-    <keep-alive exclude="Detail, Login, Profile">
+    <keep-alive exclude="Detail,Login">
      <router-view/>    
     </keep-alive>
     <tabbar-main/>
