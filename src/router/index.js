@@ -32,7 +32,11 @@ Vue.use(VueRouter)
   },
   {
     path:'/profile',
-    component: Profile
+    component: Profile,
+    beforeEnter: (to, from, next) => {
+      if(to.path === '/login') next({ name: 'Login' })
+      next()
+    }
   },
   {
     path:'/detail',
@@ -40,6 +44,7 @@ Vue.use(VueRouter)
   },
   {
     path: '/login',
+    name: 'Login',
     component: Login
   },
   {
@@ -56,7 +61,7 @@ const router = new VueRouter({
 })
 
 const originalPush = VueRouter.prototype.push
-  VueRouter.prototype.push = function push(location) {
+VueRouter.prototype.push = function push(location) {
    return originalPush.call(this, location).catch(err => err)
 }
 

@@ -1,10 +1,8 @@
 <template>
   <div id="profile">
     <nav-bar class="nav-bar"><div slot="center">xxx商城</div></nav-bar>
-    <!--1.单独封装一个组件: 利用slot知识点-->
-    <UserInfo></UserInfo>
+    <user-info :userInfo="userInfo" />
 
-    <!--2.没有单独封装: 不同的地方太多, 需要传过多的参数-->
     <section class="account">
       <div class="account-item">
         <div class="number">
@@ -26,38 +24,48 @@
       </div>
     </section>
 
-    <!--3.封装成一个整体-->
     <list-view :list-data="orderList" class="order-list"></list-view>
     <list-view :list-data="serviceList" class="service-list"></list-view>
   </div>
 </template>
 
 <script>
-  import UserInfo from './childComps/UserInfo'
-  import ListView from './childComps/ListView'
-  import NavBar from 'common/navbar/NavBar'
+import UserInfo from './childComps/UserInfo'
+import ListView from './childComps/ListView'
+import NavBar from 'common/navbar/NavBar'
 
-	export default {
-		name: "Profile",
-    components: {
-		  UserInfo, ListView, NavBar
-    },
-    data: function () {
-		  return {
-		    orderList: [
-          {icon: '#order', iconColor: '#ff8198', info: '我的消息'},
-          {icon: '#point', iconColor: '#fc7b53', info: '积分商城'},
-          {icon: '#vip', iconColor: '#ffc636', info: '会员卡'},
-        ],
-        serviceList: [
-          {icon: '#service', iconColor: '#ff8198', info: '我的购物车'},
-          {icon: '#download', iconColor: '#ff8198', info: '下载购物APP'},
-        ]
+export default {
+  name: "Profile",
+  components: {
+    UserInfo, ListView, NavBar
+  },
+  data() {
+    return {
+      orderList: [
+        {icon: '#order', iconColor: '#ff8198', info: '我的消息'},
+        {icon: '#point', iconColor: '#fc7b53', info: '积分商城'},
+        {icon: '#vip', iconColor: '#ffc636', info: '会员卡'},
+      ],
+      serviceList: [
+        {icon: '#service', iconColor: '#ff8198', info: '我的购物车'},
+        {icon: '#download', iconColor: '#ff8198', info: '下载购物APP'},
+      ],
+      userInfo: {
+        userName: '',
+        uid: ''
       }
-    },
-    mounted: function () {
     }
-	}
+  },
+  created() {
+    this.getUserInfo()
+  },
+  methods: {
+    getUserInfo() {
+      this.userInfo.userName = window.sessionStorage.getItem('userName')
+      this.userInfo.uid = window.sessionStorage.getItem('uid')
+    }
+  }
+}
 </script>
 
 <style scoped>

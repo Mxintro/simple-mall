@@ -20,11 +20,8 @@ export function formatDate(date,fmt) {
 
 export function throttle(fn, wait) {
   let lock = false
-  console.log(lock);
 	return function() {
-    console.log("--------------");
 		if(lock) {
-      console.log("return");
 			return
 		}
 		lock = true

@@ -1,21 +1,21 @@
 <template>
   <div id="app">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
-    <keep-alive exclude="Detail">
+    <keep-alive exclude="Detail, Login, Profile">
      <router-view/>    
     </keep-alive>
-    <tabbermain/>
+    <tabbar-main/>
   </div>
 </template>
 
 <script>
 
-import tabbermain from 'components/content/mainTabbar/TabbarMain.vue'
+import TabbarMain from 'components/content/mainTabbar/TabbarMain.vue'
 
 export default {
   name: "app",
   components: {
-    tabbermain,
+    TabbarMain,
   }
 }
 </script>
