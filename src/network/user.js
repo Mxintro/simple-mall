@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const userHttp = function (option) {
+export const userHttp = function (option) {
   return new Promise((resolve, reject) => {
     const instance = axios.create({
       baseURL: 'http://127.0.0.1:3000',
@@ -8,7 +8,14 @@ const userHttp = function (option) {
     })
 
     instance.interceptors.request.use(config => {
-      console.log(config);
+      if (config.url === '/order'){
+        if(!window.sessionStorage.getItem('token')){
+          return Promise.reject(new Error('未登录'))
+        }
+        config.headers.Authorization = window.sessionStorage.getItem('token')
+        console.log(config);
+        return config
+      }
 			return config
 		}, err => {
 			// console.log('来到了request拦截failure中');
@@ -16,7 +23,7 @@ const userHttp = function (option) {
 		})
 
 		instance.interceptors.response.use(response => {
-      // console.log('来到了response拦截success中');
+      // console.log('来到了response拦截successs中');
       if(response.data){
         if(response.data.status >= 200 && response.data.status< 210) {
           return response.data
@@ -28,7 +35,6 @@ const userHttp = function (option) {
     })
     
     instance(option).then(res => {
-      console.log(res);
       resolve(res)
     }).catch(err => {
       reject(err)

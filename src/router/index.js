@@ -8,6 +8,7 @@ const Profile = () => import('views/profile/Profile.vue');
 const Detail = () => import('views/detail/Detail.vue')
 const Login = () => import('views/user/Login.vue')
 const Register = () => import('views/user/Register.vue')
+const Order = () => import('views/order/Order.vue')
 
 Vue.use(VueRouter)
 
@@ -50,6 +51,10 @@ Vue.use(VueRouter)
   {
     path: '/reg',
     component: Register
+  },
+  {
+    path: '/order',
+    component: Order
   }
   
 ]

@@ -15,7 +15,6 @@
     </div>
     <div class="price-count">
       <div class="now-price">￥{{getOrderCost(itemIndex)}}</div>
-      <div class="cart-count">x{{cartItem.count}}</div>
       <div class="count">
         <span class=" iconfont icon-jian" @click="countHandle(-1)"></span>
         <div class="num">x{{cartItem.count}}</div>
@@ -60,6 +59,7 @@ export default {
       this.deleteCart(this.itemIndex)
     },
     countHandle(num) {
+      console.log(num);
       if(num < 0 && this.cartItem.count > 0){
         this.cartCountHandler({index: this.itemIndex, num: num})
       }else if(num > 0 && this.cartItem.count < this.cartItem.stock){

@@ -2,8 +2,8 @@ const getters = {
   cartList(state) {
     return state.cartList
   },
-  cartCount(state, getters) {
-    return getters.cartList.length
+  cartCount(state) {
+    return state.cartList.filter(item => item.checked).length
   },
   getTotalCost(state) {
     let total = 0
@@ -20,7 +20,7 @@ const getters = {
   getOrderCost: (state) => (index) => {
     console.log(index);
     const item = state.cartList[index]
-    return item.count*item.nowprice
+    return Math.round(item.count*item.nowprice*100)/100
   }
 }
 

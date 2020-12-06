@@ -15,6 +15,8 @@ import BottomBar from './childcomps/BottomBar'
 
 import { mapGetters } from 'vuex'
 
+import { postOrders } from 'network/order'
+
 export default {
   name: 'Cart',
   components: {
@@ -25,18 +27,39 @@ export default {
   computed: {
     ...mapGetters([
       'cartList',
-      'cartCount'
+      'cartCount',
+      'getOrderCost'
     ])
   },
   methods: {
     orderSubmit(){
+      if (this.cartCount === 0) {
+        return
+      }
+      const uid = window.sessionStorage.getItem('uid')
+      const token = window.sessionStorage.getItem('token')
+      if (!uid || !token){
+        console.log('未登录');
+        return
+      }
+      
       const orderList = []
-      this.cartList.forEach(item => {
+      this.cartList.forEach((item,index) => {
         if (item.checked) {
-          const {title, goodIid, nowprice, count, style} = item
-          orderList.push({title, goodIid, nowprice, count, style})
+          const {title, goodIid, nowprice, count, style, size} = item
+          const order = {title, goodIid, nowprice, count, style, size}
+          order.uid = uid
+          order.cost = this.getOrderCost(index)
+          order.create_time = Math.floor(Date.now()/1000)
+          orderList.push(order)
         }
-      });
+      })
+      console.log(orderList);
+      postOrders(orderList).then(res => {
+        console.log(res);
+      }).catch(err=>{
+        console.log(err)
+      })
     }
   }
 
