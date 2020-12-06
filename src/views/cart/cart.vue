@@ -3,15 +3,16 @@
   <nav-bar class="nav-bar"><div slot="center">购物车({{cartCount}})</div></nav-bar>
   <cart-list :cartList="cartList"></cart-list>
   <bottom-bar :cartList="cartList" @orderClick="orderSubmit"></bottom-bar>
+  <pay-view
+    :payViewShow="showPayView">fffffffff</pay-view>
 </div>
-
-  
 </template>
 
 <script>
 import NavBar from 'common/navbar/NavBar'
 import CartList from './childcomps/CartList'
 import BottomBar from './childcomps/BottomBar'
+import PayView from './childcomps/PayView'
 
 import { mapGetters } from 'vuex'
 
@@ -19,10 +20,16 @@ import { postOrders } from 'network/order'
 
 export default {
   name: 'Cart',
+  data() {
+    return {
+      showPayView:true
+    }
+  },
   components: {
     NavBar,
     CartList,
-    BottomBar
+    BottomBar,
+    PayView
   },
   computed: {
     ...mapGetters([

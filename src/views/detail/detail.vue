@@ -1,12 +1,13 @@
 d<template>
   <div id="detail">
     <detail-nav-bar @itemClick="scrollTo" :currentIndex="navBarIndex"> </detail-nav-bar>
-    <scroll class="content"
-            ref="scroll"
-            @scroll="contentScroll"
-            :data="[topImage, goods, shop, detailInfo, paramInfo, commentInfo]"
-            :probe-type="3"
-            :pull-up-load="true">
+    <scroll 
+      class="content"
+      ref="scroll"
+      @scroll="contentScroll"
+      :data="[topImage, goods, shop, detailInfo, paramInfo, commentInfo]"
+      :probe-type="3"
+      :pull-up-load="true">
       <div>
         <detail-swiper ref="top" :images="topImage"></detail-swiper>
         <detail-base-info :goods="goods"></detail-base-info>
