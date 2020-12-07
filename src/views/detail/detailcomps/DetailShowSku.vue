@@ -191,16 +191,7 @@ export default {
   font-size: 13px;
   justify-content: space-between;
 }
-#sku-container .sku-bottom {
-  height: 3.5rem;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  line-height: 3.5rem;
-  text-align: center;
-  background-color: #ff4b8a;
-  color: #fff;
-}
+
 .sku-top .img-container {
   float: left;
   position: relative;
@@ -244,18 +235,22 @@ export default {
   color: #ff4b8a;
 }
 .sku-middle .color-info {
-  flex: 1.5;
+  flex: 1;
+  padding-top: 5px;
 }
 .sku-middle .sizes-info{
   flex: 1;
+  padding-top: 5px;
 }
 .sku-middle .count-num {
   flex: 1;
+  padding-top: 5px;
 }
 .sku-middle .color-list {
   display: flex;
-  align-content: space-between;
   flex-wrap: wrap;
+  height: 4rem;
+  overflow-y: auto;
 }
 .sku-middle .sizes-list {
   display: flex;
@@ -263,10 +258,14 @@ export default {
 }
 .sku-middle .color-size-btn {
   flex-shrink: 1;
-  margin: 5px 10px 5px 0px;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  margin-top: 5px;
+  margin-right: 10px;
   background-color: #fff;
   border: #c2c2c2 0.5px solid;
-  padding: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
   font-size: 12px;
   border-radius: 4px; 
 }
@@ -292,7 +291,6 @@ export default {
   display: flex;
 }
 .sku-middle .num-button .num-center input {
-  /* border: none; */
   background:none;  
 	outline:none;  
 	border:0px;
@@ -308,11 +306,11 @@ export default {
   width: 100%;
   line-height: 3.5rem;
   text-align: center;
-  background-color: #ff4b8a;
+  background-color: var(--color-high-text);
   color: #fff;
 }
 .active {
-  color: #ff4b8a;
-  background:rgb(243, 238, 238)!important;
+  color: #fff;
+  background:var(--color-tint)!important;
 }
 </style>

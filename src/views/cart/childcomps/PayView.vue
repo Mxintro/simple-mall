@@ -69,14 +69,11 @@ export default {
 }
 
 .pay_view_inner {
-  z-index: 2001;
   text-align: center;
   border-radius: 10px;
   background-color:#FFF;
   height: 35vh;
   width: 300px;
-  /* border: var(--color-text) 1px solid; */
-  opacity:1;
 
   display: flex;
   flex-direction: column;

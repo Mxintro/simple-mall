@@ -64,7 +64,7 @@ export default {
       const uid = window.sessionStorage.getItem('uid')
       const token = window.sessionStorage.getItem('token')
       if (!uid || !token){
-        console.log('未登录');
+        this.$router.push('/login')
         return
       }
       

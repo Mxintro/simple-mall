@@ -1,7 +1,7 @@
 <template>
   <div id="profile">
     <nav-bar class="nav-bar"><div slot="center">xxx商城</div></nav-bar>
-    <user-info :userInfo="userInfo" />
+    <user-info :userInfo="userInfo" @log-out="getUserInfo" />
 
     <section class="account">
       <div class="account-item">

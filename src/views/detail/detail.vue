@@ -123,7 +123,7 @@ export default {
     },
     _getOffsetTops(){
       let temTops = this.themTops = []
-      temTops.push(this.$refs.ginfo.$el.offsetTop)
+      temTops.push(0)
       temTops.push(this.$refs.paramInfo.$el.offsetTop)
       temTops.push(this.$refs.comment.$el.offsetTop)
       temTops.push(this.$refs.recommend.$el.offsetTop)
