@@ -20,7 +20,7 @@ export default {
     toast() {
       setTimeout(() =>{
         this.$emit("update:toastShow",false)
-      }, 1500)
+      }, 800)
     }
   },
   watch: {

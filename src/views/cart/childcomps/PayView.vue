@@ -3,12 +3,12 @@
   <div class="cover"></div>
   <div class="pay_view">
     <div class="pay_view_inner">
-    <div class="pay_info">收货地址</div>
-    <div class="pay_info">支付方式</div>
-    <div class="pay_info">共</div>
+    <div class="pay_info">收货地址：</div>
+    <div class="pay_info">支付方式：</div>
+    <div class="pay_info cost">共：<span>￥{{orderAmount}}</span></div>
     <div class="pay_check">
-      <div class="pay_cancel">取消</div>
-      <div class="pay_confirm">确认</div>
+      <div class="pay_cancel" @click="toastClose">取消</div>
+      <div class="pay_confirm" @click="orderConfirm">确认</div>
     </div>
   </div>
   </div>
@@ -23,6 +23,10 @@ export default {
     payViewShow: {
       type: Boolean,
       default: false
+    },
+    orderAmount: {
+      type: Number,
+      default: 0
     }
   },
   methods: {
@@ -30,11 +34,12 @@ export default {
       setTimeout(() =>{
         this.$emit("update:payViewShow",false)
       }, 1500)
-    }
-  },
-  watch: {
-    payViewShow(val) {
-      if(val) this.payView()
+    },
+    orderConfirm() {
+      this.$emit('orderConfirm')
+    },
+    toastClose() {
+      this.$emit('update:payViewShow',false)
     }
   }
 }
@@ -43,7 +48,7 @@ export default {
 <style scoped>
 .cover {
   position: fixed;
-  z-index: 2000;
+  z-index: 9;
   top: 0;
   bottom: 0;
   left: 0;
@@ -53,7 +58,7 @@ export default {
 }
 .pay_view{
   position: fixed;
-  z-index: 2001;
+  z-index: 10;
   top: 0;
   bottom: 0;
   left: 0;
@@ -70,7 +75,7 @@ export default {
   background-color:#FFF;
   height: 35vh;
   width: 300px;
-  border: var(--color-text) 1px solid;
+  /* border: var(--color-text) 1px solid; */
   opacity:1;
 
   display: flex;
@@ -84,7 +89,14 @@ export default {
   font-size: 16px;
   margin-left: 10px;
   margin-right: 10px;
-  border-bottom: #fff 0.5px solid;
+  border-bottom: #cccccc 0.5px solid;
+}
+.pay_view_inner .cost {
+  border-bottom: none;
+}
+.pay_view_inner .cost span {
+  font-size: 26px;
+  color: rgb(255, 69, 0);
 }
 .pay_check {
   display: flex;
@@ -94,9 +106,9 @@ export default {
 }
 .pay_check div {
   flex-grow: 0;
-  border-radius: 4px;
-  height: 8vh;
-  line-height: 8vh;
+  border-radius: 6px;
+  height: 6vh;
+  line-height: 6vh;
   width: 120px;
   font-size: 16px;
 }

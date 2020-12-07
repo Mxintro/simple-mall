@@ -82,10 +82,10 @@ export default {
         this.isSuccess = true
         this.logMessage = '注册成功'
         this.toastVisible = true
-        // this.userForm.name = ''
-        // this.userForm.phone = ''
-        // this.userForm.password = ''
-        // setTimeout(() => this.$router.back(), 400)
+        this.userForm.name = ''
+        this.userForm.phone = ''
+        this.userForm.password = ''
+        setTimeout(() => this.$router.replace('/profile'), 400)
       }).catch(err => {
         this.isSuccess = false
         this.logMessage = err
