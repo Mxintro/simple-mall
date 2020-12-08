@@ -18,7 +18,7 @@
     <div :class="['iconfont', isSuccess ? 'icon-chenggong' : 'icon-shibai']">
       {{logMessage}}
     </div>
-    </toast-com>
+  </toast-com>
 </div>
 </template>
 

@@ -32,6 +32,9 @@ const mutations = {
   },
   cartCountHandler(state, payload){
     state.cartList[payload.index].count += payload.num
+  },
+  cartListClear(state) {
+    state.cartList = []
   }
 }
 

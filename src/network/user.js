@@ -3,8 +3,8 @@ import axios from 'axios'
 export const userHttp = function (option) {
   return new Promise((resolve, reject) => {
     const instance = axios.create({
-      baseURL: 'http://127.0.0.1:3000',
-      timeout: 3000
+      baseURL: 'http://119.3.122.222:3000',
+      timeout: 5000
     })
 
     instance.interceptors.request.use(config => {

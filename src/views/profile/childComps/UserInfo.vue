@@ -54,10 +54,12 @@ export default {
     },
     userSwitch() {
       this.handleVisible = false
+      this.$store.commit('cartListClear')
       this.$router.push({name: 'Login'})
     },
     userLogout() {
       this.handleVisible = false
+      this.$store.commit('cartListClear')
       window.sessionStorage.clear()
       this.$emit('log-out')
     }

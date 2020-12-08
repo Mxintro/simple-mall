@@ -20,7 +20,7 @@ export default {
     toast() {
       setTimeout(() =>{
         this.$emit("update:toastShow",false)
-      }, 800)
+      }, 1000)
     }
   },
   watch: {
@@ -33,25 +33,25 @@ export default {
 
 <style scoped>
 .toast{
-    position: fixed;
-    z-index: 2000;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .toast-inner {
-    text-align: center;
-    border-radius: 5px;
-    color:#FFF;
-    background: var(--color-tint);
-    opacity: 0.5;
-    height: 60px;
-    line-height: 60px;
-    padding: 0 15px;
-    max-width: 300px;
-  }
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.toast-inner {
+  text-align: center;
+  border-radius: 5px;
+  color:#FFF;
+  background: var(--color-tint);
+  opacity: 0.5;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 15px;
+  max-width: 300px;
+}
 </style>
