@@ -312,5 +312,6 @@ export default {
 .active {
   color: #fff;
   background:var(--color-tint)!important;
+  border-radius: 4px;
 }
 </style>

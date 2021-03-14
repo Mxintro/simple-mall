@@ -55,6 +55,11 @@ export default {
   },
   methods: {
     orderHandler() {
+      const token = window.sessionStorage.getItem('token_user')
+      if (!token){
+        this.$router.push('/login')
+        return
+      }
       this.showPayView = true
     },
     orderSubmit(){
@@ -62,7 +67,8 @@ export default {
         return
       }
       const uid = window.sessionStorage.getItem('uid')
-      const token = window.sessionStorage.getItem('token')
+      const token = window.sessionStorage.getItem('token_user')
+      console.log(uid,token)
       if (!uid || !token){
         this.$router.push('/login')
         return

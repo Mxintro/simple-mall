@@ -1,6 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+const VueRouterPush = VueRouter.prototype.push 
+VueRouter.prototype.push = function push (to) {
+    return VueRouterPush.call(this, to).catch(err => err)
+}
+const VueRouterReplace = VueRouter.prototype.replace
+VueRouter.prototype.replace = function replace (to) {
+  return VueRouterReplace.call(this, to).catch(err => err)
+}
+
 const Home = () => import('views/home/Home.vue');
 const Cart = () => import('views/cart/Cart.vue');
 const Category = () => import('views/category/Category.vue');
@@ -65,9 +74,5 @@ const router = new VueRouter({
   routes
 })
 
-const originalPush = VueRouter.prototype.push
-VueRouter.prototype.push = function push(location) {
-   return originalPush.call(this, location).catch(err => err)
-}
 
 export default router

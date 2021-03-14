@@ -3,16 +3,16 @@ import axios from 'axios'
 export const userHttp = function (option) {
   return new Promise((resolve, reject) => {
     const instance = axios.create({
-      baseURL: 'http://119.3.122.222:3000',
+      baseURL: 'http://81.68.147.193:3000',
       timeout: 5000
     })
 
     instance.interceptors.request.use(config => {
       if (config.url === '/order'){
-        if(!window.sessionStorage.getItem('token')){
+        if(!window.sessionStorage.getItem('token_user')){
           return Promise.reject(new Error('未登录'))
         }
-        config.headers.Authorization = window.sessionStorage.getItem('token')
+        config.headers.Authorization = window.sessionStorage.getItem('token_user')
         console.log(config);
         return config
       }

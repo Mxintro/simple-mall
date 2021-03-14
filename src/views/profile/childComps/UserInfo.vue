@@ -44,7 +44,8 @@ export default {
   methods: {
     userHandler(){
       // ?在a标签中,跳转会出问题
-      const token = window.sessionStorage.getItem('token')
+      const token = window.sessionStorage.getItem('token_user')
+      const uid = window.sessionStorage.getItem('uid')
       console.log(token);
       if(token) {
         this.handleVisible = true

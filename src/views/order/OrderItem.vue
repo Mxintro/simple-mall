@@ -30,7 +30,9 @@ export default {
   props:{
     orderItem: {
       type: Object,
-      default: {}
+      default(){
+        return {}
+      }
     }
   },
   computed: {
@@ -58,7 +60,6 @@ export default {
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
-  align-items: ;
 }
 .order-title, .order-desc {
   color: #333;

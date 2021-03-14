@@ -68,7 +68,7 @@ export default {
       }
       loginUser(this.userForm).then(res => {
         console.log(res);
-        window.sessionStorage.setItem('token', res.data.token)
+        window.sessionStorage.setItem('token_user', res.data.token)
         window.sessionStorage.setItem('userName', res.data.name)
         window.sessionStorage.setItem('uid', res.data.id)
 

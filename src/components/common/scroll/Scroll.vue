@@ -20,7 +20,7 @@ export default {
         },
         pullUpLoad: {
             type: Boolean,
-            default: false
+            default: true
         },
         //data获取内容数据更新，解决划不动问题
         data: {
@@ -67,9 +67,7 @@ export default {
         //每次触发上拉事件后，在回调函数的最后，都应该调用 finishPullUp() 方法。
         //在 finishPullUp() 方法调用前不会触发下一次的 pullingUp 事件
         finishPullUp() {
-          this.scroll && this.scroll.finishPullUp && this.scroll.finishPullUp()
-          console.log(`pullingup`)          
-          
+          this.scroll && this.scroll.finishPullUp && this.scroll.finishPullUp()          
         },
         scrollTo(x, y, time) {
 		    this.scroll && this.scroll.scrollTo && this.scroll.scrollTo(x, y, time)

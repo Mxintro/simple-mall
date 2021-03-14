@@ -3,6 +3,6 @@ import TabbarItem from './tabbarItem'
 
 
 export {
-    Tabbar,
-    TabbarItem
+  Tabbar,
+  TabbarItem
 }
