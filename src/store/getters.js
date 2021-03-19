@@ -9,7 +9,7 @@ const getters = {
     let total = 0
     state.cartList.forEach(el => {
       if(el.checked === true && el.count > 0){
-        total += el.nowprice * el.count
+        total += Math.round(el.nowprice * el.count*100)/100
       }
     });
     return total
@@ -17,6 +17,7 @@ const getters = {
   checkedAll(state){ 
     return state.cartList.find(item => item.checked === false) === undefined
   },
+  // 单商品订单价格
   getOrderCost: (state) => (index) => {
     console.log(index);
     const item = state.cartList[index]
